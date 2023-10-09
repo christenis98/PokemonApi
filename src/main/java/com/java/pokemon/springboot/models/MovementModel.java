@@ -13,7 +13,10 @@ public class MovementModel {
 	private String nombre;
     private int poder;
     private String tipo;
-    
+
+	public MovementModel() {
+
+	}
 	public MovementModel(String nombre, int poder, String tipo) {
 		this.nombre = nombre;
 		this.poder = poder;

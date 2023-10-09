@@ -24,6 +24,9 @@ public class PokemonPersonal {
     )
     private List<MovementModel> movimientos;
 
+    public PokemonPersonal() {
+
+    }
     public PokemonPersonal(String nombre) {
         this.nombre = nombre;
     }

@@ -12,6 +12,6 @@ import com.java.pokemon.springboot.models.PokemonModel;
 @Repository
 public interface PokemonRepository extends JpaRepository<PokemonModel, Long> {
 
-	@Query("SELECT pm FROM PokemonModel pm JOIN pm.movimientos m WHERE m.nombre = :nombreMovimiento")
-	List<PokemonModel> findPokemonByMovimiento(@Param("nombreMovimiento") String nombreMovimiento);
+	/*@Query("SELECT pm FROM PokemonModel pm JOIN pm.movimientos m WHERE m.nombre = :nombreMovimiento")
+	List<PokemonModel> findPokemonByMovimiento(@Param("nombreMovimiento") String nombreMovimiento);*/
 }

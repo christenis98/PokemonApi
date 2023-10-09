@@ -51,8 +51,8 @@ public class PokemonController {
     }
     
     // Consulta para obtener Pokémon por nombre de movimiento
-    @GetMapping("/movimiento/{nombreMovimiento}")
+  /*  @GetMapping("/movimiento/{nombreMovimiento}")
     public List<PokemonModel> obtenerPokemonPorMovimiento(@PathVariable String nombreMovimiento) {
         return pokemonRepository.findPokemonByMovimiento(nombreMovimiento);
-    }
+    }*/
 }

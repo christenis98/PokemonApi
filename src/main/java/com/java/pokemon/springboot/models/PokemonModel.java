@@ -16,9 +16,11 @@ public class PokemonModel {
 
     private String nombre;
     private String tipo;
-    
-    
-    
+
+
+	public PokemonModel() {
+
+	}
 	public PokemonModel( String nombre, String tipo) {
 
 		this.nombre = nombre;
