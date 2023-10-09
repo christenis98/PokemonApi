@@ -1,5 +1,6 @@
 package com.java.pokemon.springboot.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -23,6 +24,14 @@ public class PokemonPersonal {
         inverseJoinColumns = @JoinColumn(name = "movement_id")
     )
     private List<MovementModel> movimientos;
+
+    public void addMovement(MovementModel movement) {
+        if (movimientos == null) {
+            movimientos = new ArrayList<>();
+        }
+        movimientos.add(movement);
+        movement.getPokemonPersonales().add(this); // Establecer la referencia bidireccional
+    }
 
     public PokemonPersonal() {
 

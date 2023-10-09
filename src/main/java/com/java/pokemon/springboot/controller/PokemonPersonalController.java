@@ -1,6 +1,10 @@
 package com.java.pokemon.springboot.controller;
 
+import com.java.pokemon.springboot.models.PokemonModel;
+import com.java.pokemon.springboot.repository.PokemonRepository;
+import com.java.pokemon.springboot.service.PokemonPersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.java.pokemon.springboot.models.PokemonPersonal;
@@ -14,11 +18,31 @@ import java.util.Optional;
 public class PokemonPersonalController {
     @Autowired
     private PokemonPersonalRepository pokemonPersonalRepository;
+    @Autowired
+    private PokemonRepository pokemonRepository;
+    private final PokemonPersonalService pokemonPersonalService;
+    @Autowired
+    public PokemonPersonalController(PokemonPersonalService pokemonPersonalService) {
+        this.pokemonPersonalService = pokemonPersonalService;
+    }
 
     // Endpoint para crear un nuevo Pokémon personalizado
     @PostMapping("/")
-    public PokemonPersonal crearPokemonPersonal(@RequestBody PokemonPersonal pokemonPersonal) {
-        return pokemonPersonalRepository.save(pokemonPersonal);
+    public PokemonPersonal crearPokemonPersonal(@RequestBody PokemonPersonal pokemonPersonal) throws Exception {
+        // Obtén el PokemonModel al que se hace referencia
+        Optional<PokemonModel> pokemonBaseOptional = pokemonRepository.findById(pokemonPersonal.getPokemonBase().getId());
+
+        if (pokemonBaseOptional.isPresent()) {
+            // Si el PokemonModel existe, asigna el PokemonModel a PokemonPersonal y guárdalo
+            PokemonModel pokemonBase = pokemonBaseOptional.get();
+            pokemonPersonal.setPokemonBase(pokemonBase);
+            return pokemonPersonalRepository.save(pokemonPersonal);
+        }else {
+            // Si el PokemonModel no existe, maneja el caso según tu lógica de negocio
+            // Puedes lanzar una excepción o crear el PokemonModel si es apropiado.
+            // Por ejemplo, puedes lanzar una excepción indicando que el PokemonModel no existe.
+            throw new Exception("El pokemon no existe");
+        }
     }
 
     // Endpoint para obtener todos los Pokémon personalizados

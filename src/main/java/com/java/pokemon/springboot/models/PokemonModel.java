@@ -1,10 +1,8 @@
 package com.java.pokemon.springboot.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pokemon")
@@ -17,7 +15,8 @@ public class PokemonModel {
     private String nombre;
     private String tipo;
 
-
+	@OneToMany(mappedBy = "pokemon")
+	private List<MovementModel> movimientos;
 	public PokemonModel() {
 
 	}
@@ -25,6 +24,14 @@ public class PokemonModel {
 
 		this.nombre = nombre;
 		this.tipo = tipo;
+	}
+
+	public void addMovement(MovementModel movement) {
+		if (movimientos == null) {
+			movimientos = new ArrayList<>();
+		}
+		movimientos.add(movement);
+		movement.setPokemon(this); // Establecer la referencia bidireccional
 	}
 	
 	public Long getId() {

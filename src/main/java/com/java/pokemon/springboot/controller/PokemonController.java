@@ -1,4 +1,5 @@
 package com.java.pokemon.springboot.controller;
+import com.java.pokemon.springboot.DTO.PokemonDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,8 +52,8 @@ public class PokemonController {
     }
     
     // Consulta para obtener Pokémon por nombre de movimiento
-  /*  @GetMapping("/movimiento/{nombreMovimiento}")
-    public List<PokemonModel> obtenerPokemonPorMovimiento(@PathVariable String nombreMovimiento) {
+    @GetMapping("/movimiento/{nombreMovimiento}")
+    public List<PokemonDTO> obtenerPokemonPorMovimiento(@PathVariable String nombreMovimiento) {
         return pokemonRepository.findPokemonByMovimiento(nombreMovimiento);
-    }*/
+    }
 }
